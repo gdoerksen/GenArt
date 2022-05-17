@@ -17,6 +17,8 @@ class MinimalCodeGenerator():
 
     code_colors = [ "#BB86FC", "#03DAC6", "#CF6679" ]
 
+
+
     state_enum = {
         "function_start" : 0,
         "function_end" : 1,
@@ -87,14 +89,3 @@ def setup():
     
     codeGenerator = MinimalCodeGenerator()
     codeGenerator.generate()
-    
-    save('Examples/GenCode-' + str(int(random(1000000))) + '.png')
-    
-#TODO 
-'''
-* Add dark mode or light mode
-* Add multiple color schemes
-* Add intelligent color picking
-* Add intelligent line lengths
-*    Like if statement, etc
-'''
