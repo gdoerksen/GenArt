@@ -16,8 +16,6 @@ color randomColor()
 
 SolarSystemGenerator solarSystem = new SolarSystemGenerator();
 
-
-
 void setup()
 {
   size(900, 900);
@@ -28,13 +26,13 @@ void draw()
 {
   background(background_color);
 
-  solarSystem.sun.draw();
-
-  for (Planet planet : solarSystem.planets)
+  for (ParticleCircle pC : solarSystem.particleCircles)
   {
-    planet.orbit();
+    for (Planet planet : pC.planets)
+    {
+      planet.orbit();
+    }
   }
-
 }
 
 
@@ -114,7 +112,7 @@ public class Planet
   {
     float angular_change_deg = _orbit_velocity_rpm * 60 / 360;
     set_angle(_angle_deg+angular_change_deg);
-    draw_orbit();
+    //draw_orbit();
     draw_planet();
   }
 
@@ -138,36 +136,54 @@ int PLANET_MIN_RADIUS = 5;
 
 public class SolarSystemGenerator
 {
-  ArrayList<Planet> planets = new ArrayList<Planet>();
-  public Sun sun;
+  ArrayList<ParticleCircle> particleCircles = new ArrayList<ParticleCircle>();
 
   public SolarSystemGenerator()
   {
-    sun = new Sun(450, 450, int(random(50, 100)), randomColor());
+    // particleCircles.add(new ParticleCircle(36, 300.0, 450, 10, 25, 0));
+    // particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 35, 0));
+    // particleCircles.add(new ParticleCircle(36, 300.0, 450, 10, 45, 0));
+    // particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 55, 0));
 
-    int orbit_radius = sun._radius;
+    // particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 13, 0));
+    // particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 25, 0));
+    // particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 50, 0));
+    // particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 90, 0));
 
-    while (orbit_radius < 450)
-    {
-      int offset = int( random(25, 100) );
-      orbit_radius += offset;
-      if (orbit_radius > 450)
-      {
-        break;
-      }
-      // int new_planet_radius = int( random(PLANET_MIN_RADIUS, min(PLANET_MAX_RADIUS, offset ) ) ); 
-      int new_planet_radius = int( random(5, 25) ); 
-      orbit_radius += new_planet_radius;
-      if (orbit_radius > 450)
-      {
-        break;
-      }
- 
-      float orbit_velocity_rpm = random(0.25, 1);
-      int angle = int(random(0,359));
+    particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 0));
+    particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 30));
+    particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 60));
+    particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 90));
+    particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 120));
+    particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 150));
+    particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 180));
+    particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 210));
+    particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 240));
+    particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 270));
 
-      planets.add(new Planet(sun._x, sun._y, orbit_radius, orbit_velocity_rpm, #aaaaaa, new_planet_radius, angle, randomColor()));
 
+  }
+
+}
+
+public class ParticleCircle
+{
+  ArrayList<Planet> planets = new ArrayList<Planet>();
+
+  public ParticleCircle(int num_planets, float big_circle_radius, int big_circle_center, float orbit_velocity_rpm, 
+                        int planet_orbit_radius, float planet_starting_angle)
+  {
+    float angle_deg = 0;
+    int count = 0;
+    while ( count < num_planets)
+    { 
+      int pos_x = big_circle_center + int(big_circle_radius*cos(angle_deg / 180 * PI));
+      int pos_y = big_circle_center + int(big_circle_radius*sin(angle_deg / 180 * PI));
+      int planet_radius = 5;
+      planets.add(new Planet(pos_x, pos_y, planet_orbit_radius, orbit_velocity_rpm, #aaaaaa, planet_radius, planet_starting_angle, #f1f1f1));
+
+      count++;
+      angle_deg += 360.0 / num_planets;
     }
 
   }
