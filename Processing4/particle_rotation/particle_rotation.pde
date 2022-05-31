@@ -3,6 +3,14 @@
 
 // objective: a nice grey textured background? 
 
+boolean record = true;
+int frame_rate = 60;
+int totalFrames = 430;
+int counter = 0;
+
+// ffmpeg -i frame-%5d.png -vf palettegen palette.png
+// ffmpeg -framerate 30 -i frame-%5d.png -i palette.png -lavfi paletteuse example.gif
+
 color background_color = #121212;
 
 color[] planet_colors = {#BB86FC, #03DAC6, #CF6679};
@@ -18,6 +26,7 @@ SolarSystemGenerator solarSystem = new SolarSystemGenerator();
 
 void setup()
 {
+  frameRate(frame_rate);
   size(900, 900);
   // pixelDensity(2);
 }
@@ -31,6 +40,16 @@ void draw()
     for (Planet planet : pC.planets)
     {
       planet.orbit();
+    }
+  }
+  
+  if (record)
+  {
+    counter++;
+    saveFrame("example/frame-#####.png");
+    if (counter > totalFrames)
+    {
+      record = false;
     }
   }
 }
@@ -150,16 +169,26 @@ public class SolarSystemGenerator
     // particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 50, 0));
     // particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 90, 0));
 
-    particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 0));
-    particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 30));
-    particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 60));
-    particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 90));
-    particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 120));
-    particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 150));
-    particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 180));
-    particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 210));
-    particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 240));
-    particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 270));
+     particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 0));
+     particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 30));
+     particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 60));
+     particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 90));
+     particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 120));
+     particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 150));
+     particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 180));
+     particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 210));
+     particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 240));
+     particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 270));
+
+     //particleCircles.add(new ParticleCircle(36, 300.0, 400, 5, 100, 0));
+     //particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 90));
+     //particleCircles.add(new ParticleCircle(36, 300.0, 500, 5, 100, 180));
+
+    //particleCircles.add(new ParticleCircle(36, 300.0, 450, 5, 100, 0));
+    //particleCircles.add(new ParticleCircle(36, 250.0, 450, 5, 100, 30));
+    //particleCircles.add(new ParticleCircle(36, 200.0, 450, 5, 100, 60));
+    //particleCircles.add(new ParticleCircle(36, 150.0, 450, 5, 100, 90));
+    //particleCircles.add(new ParticleCircle(36, 100.0, 450, 5, 100, 120));
 
 
   }
