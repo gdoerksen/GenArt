@@ -2,10 +2,31 @@ from PIL import Image, ImageDraw
 import random # for generating random numbers
 from pathlib import Path 
 import json 
+import sys
+
+this_dir = Path(__file__).parent
+sys.path.append( str(this_dir) )
+from colorpalette import ColorPalette
 
 #TODO turn this into a rasterizer
 '''
 color choices will be grabbed from the underlying image via a k-means clustering algorithm
+'''
+
+# TODO use rabatment of the rectangle to split into rectangle and square 
+# TODO split square into 3 congruent rectangles
+# TODO split rectangle backwards into fibonacci squares  
+
+'''
+Choices if current object is square: 
+* check size to see if we should stop recursion
+* split canvas into 4 rectangles 
+* choose one of the three methods to split canvas into 3 similar rectangles
+
+Choices if current object is rectangle:
+* check width and height to see if we should stop recursion
+* use rabatment of the rectangle to split into rectangle and square 
+
 '''
 
 greenBlueOcean = ['#064E40', '#0DAD8D', '#8DD8CC', '#30BFBF', '#0C98BA', '#1164B4']
@@ -85,36 +106,6 @@ class RecursiveRectangle(AbstractRectangleCanvas):
         color = get_random_color()
         self.draw.rectangle((self.x1, self.y1, self.x2, self.y2), fill=color, outline=(0, 0, 0), width=5)
 
-
-class ColorPalette:
-    # TODO determine how to dynamically instantiate this class from a json file
-    def __init__(self, filepath: str):
-        self.filepath = filepath
-        self.json = load_color_json(filepath)
-        
-        try: 
-            self.name = self.json['name']
-        except KeyError:
-            self.name = 'unnamed'
-
-        try:
-            self.description = self.json['description']
-        except KeyError:
-            self.description = 'no description'
-
-        try:    
-            self.colors = self.json['colors']
-        except KeyError:
-            e = Exception('No colors found in json file')
-            raise e
-
-    def load_json(self):
-        with open(self.filename, 'r') as f:
-            return json.load(f)
-
-    def random_color_hex(self)->str:
-        return random.choice(self.colors)['hex']
-
 ### Hacks for testing ### 
 
 def get_random_color(): 
@@ -124,6 +115,32 @@ def get_random_color():
 
     color_choice = color_palette.random_color_hex()
     return color_choice 
+
+
+def similar_rectangle_from_square(x1:int, y1:int, x2:int, y2:int):
+    #TODO implement the two other similar rectangle functions
+    # See: https://en.wikipedia.org/wiki/Plastic_number
+    choose_method = random.randint(0,2)
+    if choose_method == 0:
+        return similar_rectangle_from_square_1(x1, y1, x2, y2)
+
+def similar_rectangle_from_square_1(x1:int, y1:int, x2:int, y2:int):
+    # produces coordinates for 3 congruent rectangles from a square
+    width = x2 - x1
+    height = y2 - y1
+    choose_method = random.randint(0,1)
+    if choose_method == 0:
+        rectangles = []
+        rectangles.append( (x1, y1, width//3, y2) )
+        rectangles.append( (x1+width//3, y1, x1+(2*width//3),y2) )
+        rectangles.append( (x1+(2*width//3), y1, x2,y2) )
+    else:
+        rectangles = []
+        rectangles.append( (x1, y1, x2, height//3) )
+        rectangles.append( (x1, y1+height//3, x2, y1+(2*height//3)) )
+        rectangles.append( (x1, y1+(2*height//3), x2, y2) )
+    return rectangles
+
 
 
 ### MAIN ###
