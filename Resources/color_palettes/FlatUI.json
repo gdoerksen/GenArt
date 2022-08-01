@@ -1,0 +1,107 @@
+{
+    "name": "Flat UI Colors",
+    "description": "Flat UI Colors",
+    "source": "https://flatuicolors.com/palette/defo",
+    "colors": [
+        {
+            "name": "Turquoise",
+            "hex": "#1abc9c",
+            "rgb": [26, 188, 156 ]
+        },
+        {
+            "name": "Green Sea",
+            "hex": "#16a085",
+            "rgb": [22, 160, 133 ]
+        },
+        {
+            "name": "Emerald",
+            "hex": "#2ecc71",
+            "rgb": [46, 204, 113 ]
+        },
+        {
+            "name": "Nephritis",
+            "hex": "#27ae60",
+            "rgb": [39, 174, 96 ]
+        },
+        {
+            "name": "Peter River",
+            "hex": "#3498db",
+            "rgb": [52, 152, 219 ]
+        },
+        {
+            "name": "Belize Hole",
+            "hex": "#2980b9",
+            "rgb": [41, 128, 185 ]
+        },
+        {
+            "name": "Amethyst",
+            "hex": "#9b59b6",
+            "rgb": [155, 89, 182 ]
+        },
+        {
+            "name": "Wisteria",
+            "hex": "#8e44ad",
+            "rgb": [142, 68, 173 ]
+        },
+        {
+            "name": "Wet Asphalt",
+            "hex": "#34495e",
+            "rgb": [52, 73, 94 ]
+        },
+        {
+            "name": "Midnight Blue",
+            "hex": "#2c3e50",
+            "rgb": [44, 62, 80 ]
+        },
+        {
+            "name": "Sun Flower",
+            "hex": "#f1c40f",
+            "rgb": [241, 196, 15 ]
+        },
+        {
+            "name": "Orange",
+            "hex": "#f39c12",
+            "rgb": [243, 156, 18 ]
+        },
+        {
+            "name": "Carrot",
+            "hex": "#e67e22",
+            "rgb": [230, 126, 34 ]
+        },
+        {
+            "name": "Pumpkin",
+            "hex": "#d35400",
+            "rgb": [211, 84, 0 ]
+        },
+        {
+            "name": "Alizarin",
+            "hex": "#e74c3c",
+            "rgb": [231, 76, 60 ]
+        },
+        {
+            "name": "Pomegranate",
+            "hex": "#c0392b",
+            "rgb": [192, 57, 43 ]
+        },
+        {
+            "name": "Clouds",
+            "hex": "#ecf0f1",
+            "rgb": [236, 240, 241 ]
+        },
+        {
+            "name": "Silver",
+            "hex": "#bdc3c7",
+            "rgb": [189, 195, 199 ]
+        },
+        {
+            "name": "Concrete",
+            "hex": "#95a5a6",
+            "rgb": [149, 165, 166 ]
+        },
+        {
+            "name": "Asbestos",
+            "hex": "#7f8c8d",
+            "rgb": [127, 140, 141 ]
+        }
+    ]
+}
