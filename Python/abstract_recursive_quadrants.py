@@ -1,6 +1,14 @@
 from PIL import Image, ImageDraw
 import random # for generating random numbers
+from pathlib import Path 
 
+#TODO turn this into a rasterizer
+'''
+color choices will be grabbed from the underlying image via a k-means clustering algorithm
+'''
+
+greenBlueOcean = ['#064E40', '#0DAD8D', '#8DD8CC', '#30BFBF', '#0C98BA', '#1164B4']
+color_palette = greenBlueOcean
 
 class AbstractRectangleCanvas:
     def __init__(self, image_width: int, image_height: int, background_color: tuple = (0, 0, 0)):
@@ -60,20 +68,26 @@ class RecursiveRectangle:
         return (x, y)
 
     def draw_rectangle(self):
-        color = (random.randrange(0, 255), random.randrange(0, 255), random.randrange(0, 255))
-        self.draw.rectangle((self.x1, self.y1, self.x2, self.y2), fill=color)
+        global color_palette
+        color = random.choice(color_palette)
+        self.draw.rectangle((self.x1, self.y1, self.x2, self.y2), fill=color, outline=(0, 0, 0), width=5)
 
 
 def main():
-    image_width = 500
-    image_height = 500
-    canvas_color = (255, 255, 255)
-    ar = AbstractRectangleCanvas(image_width, image_height, canvas_color)
-    
-    image = ar.get_image()
-    image.show()
+    save_directory = Path('.') / 'Python' / 'abstract_recursive_quadrants' / 'output'
+    save_directory.mkdir(parents=True, exist_ok=True)
+    # print(save_directory.absolute())
 
-    # image.save('square.png')
+    for i in range(1, 10):
+        random.seed(i)
+        image_width = 1000
+        image_height = 1000
+        canvas_color = (255, 255, 255)
+        ar = AbstractRectangleCanvas(image_width, image_height, canvas_color)
+        
+        image = ar.get_image()
+
+        image.save(save_directory / f'seed_{i}.png')
 
 if __name__ == '__main__':
     main()

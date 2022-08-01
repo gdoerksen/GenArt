@@ -1,7 +1,11 @@
 # Generative Art
-I'm using Processing4 to create generative works of art in 2D and 3D. Here are some examples of my work. 
+I'm using Python or Processing4 to create generative works of art in 2D and 3D. Here are some examples of my work. 
+
+### Abstract Rectangles
+![abstract_rectangles](Python/abstract_recursive_quadrants/example/seed_2.png)
 
 ### Circles
 ![particle_rotation](Processing4/particle_rotation/example/example.gif)
 ### Minimalist Code
 ![minimalist_code](Processing4/minimalist_code/Examples/GenCode-757577.png)
+
