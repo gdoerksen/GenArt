@@ -2,6 +2,7 @@ from PIL import Image, ImageDraw
 import random # for generating random numbers
 from pathlib import Path 
 import sys
+from matplotlib.pyplot import sca
 
 from pyparsing import java_style_comment
 
@@ -52,27 +53,30 @@ def draw_wandering_stacked_squares(draw: ImageDraw.Draw, image_width: int, image
     square_width = image_width // squares_per_row
     square_height = image_height // squares_per_row
     for i in range(squares_per_row):
-        # x1 = square_width * i
-        # x2 = square_width * (i+1)
         for j in range(10):
             x1 = square_width * i
             x2 = square_width * (i+1)
             y1 = square_height * j
             y2 = square_height * (j+1)
-            wander_direction_x = random.choice([-1, 0, 1])
-            wander_direction_y = random.choice([-1, 0, 1])
-            wander_distance = random.choice([0, 0.1])
 
+            # choose_direction = random.randint(0, 359)
+            # actually we want to choose a point inside a sub-square 
             stacked_squares = 5
-            scaling_factor = 0.10
+            scaling_factor = 0.25
+            new_square_width = square_width
+            new_square_height = square_height
             for _ in range(stacked_squares):
                 color = get_random_color()
                 draw.rectangle((x1, y1, x2, y2), fill=color, outline=(0, 0, 0), width=2)
 
-                x1 += square_width*wander_direction_x*wander_distance 
-                x2 -= square_width*wander_direction_x*wander_distance
-                y1 += square_height*wander_direction_y*wander_distance
-                y2 -= square_height*wander_direction_y*wander_distance
+                x1 = random.randint(x1, x1+int(new_square_width*scaling_factor))
+                new_square_width = int(new_square_width - (new_square_width*scaling_factor))
+                x2 = x1+new_square_width
+
+                y1 = random.randint(y1, y1+int(new_square_height*scaling_factor))
+                new_square_height = int(new_square_height - (new_square_height*scaling_factor))
+                y2 = y1+new_square_height
+
 ### MAIN ###
 
 def main():
@@ -86,8 +90,8 @@ def main():
     image = Image.new('RGB', (image_width, image_height), canvas_color)
     draw = ImageDraw.Draw(image)
 
-    draw_stacked_squares(draw, image_width, image_height )
-
+    # draw_stacked_squares(draw, image_width, image_height )
+    draw_wandering_stacked_squares(draw, image_width, image_height )
 
             # draw.rectangle((x1, y1, x2, y2), fill=get_random_color())
             # draw.rectangle((x1, y1, x2, y2), fill=get_random_color(), outline=(0, 0, 0), width=2)
