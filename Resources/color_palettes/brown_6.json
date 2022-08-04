@@ -1,0 +1,7 @@
+{
+    "name": "Brown 6",
+    "description": "ede0d4-e6ccb2-ddb892-b08968-7f5539-9c6644",
+    "source": "https://coolors.co/palette/ede0d4-e6ccb2-ddb892-b08968-7f5539-9c6644",
+    "colors":
+    [{"name":"Almond","hex":"#ede0d4","rgb":[237,224,212],"cmyk":[0,5,11,7],"hsb":[29,11,93],"hsl":[29,41,88],"lab":[90,2,7]},{"name":"Desert Sand","hex":"#e6ccb2","rgb":[230,204,178],"cmyk":[0,11,23,10],"hsb":[30,23,90],"hsl":[30,51,80],"lab":[84,5,16]},{"name":"Burlywood","hex":"#ddb892","rgb":[221,184,146],"cmyk":[0,17,34,13],"hsb":[30,34,87],"hsl":[30,52,72],"lab":[77,8,24]},{"name":"Cafe Au Lait","hex":"#b08968","rgb":[176,137,104],"cmyk":[0,22,41,31],"hsb":[27,41,69],"hsl":[27,31,55],"lab":[60,10,23]},{"name":"Coffee","hex":"#7f5539","rgb":[127,85,57],"cmyk":[0,33,55,50],"hsb":[24,55,50],"hsl":[24,38,36],"lab":[40,14,23]},{"name":"Brown Sugar","hex":"#9c6644","rgb":[156,102,68],"cmyk":[0,35,56,39],"hsb":[23,56,61],"hsl":[23,39,44],"lab":[48,18,28]}]
+}
