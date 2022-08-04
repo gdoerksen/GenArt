@@ -48,7 +48,6 @@ def draw_stacked_squares(draw: ImageDraw.Draw, image_width: int, image_height: i
                 y2 -= square_height*scaling_factor
 
 def draw_wandering_stacked_squares(draw: ImageDraw.Draw, image_width: int, image_height: int):
-    #TODO fix the wandering algorithm
     squares_per_row = 10
     square_width = image_width // squares_per_row
     square_height = image_height // squares_per_row
@@ -58,24 +57,30 @@ def draw_wandering_stacked_squares(draw: ImageDraw.Draw, image_width: int, image
             x2 = square_width * (i+1)
             y1 = square_height * j
             y2 = square_height * (j+1)
-
-            # choose_direction = random.randint(0, 359)
-            # actually we want to choose a point inside a sub-square 
             stacked_squares = 5
             scaling_factor = 0.25
+            choice_x = random.triangular(0, 1, 0.5)
+            choice_y = random.triangular(0, 1, 0.5)
             new_square_width = square_width
             new_square_height = square_height
-            for _ in range(stacked_squares):
-                color = get_random_color()
-                draw.rectangle((x1, y1, x2, y2), fill=color, outline=(0, 0, 0), width=2)
+            color = get_random_color()
+            draw.rectangle((x1, y1, x2, y2), fill=color, outline=(0, 0, 0), width=2)
+            for _ in range(stacked_squares-1):
+                # x1 = random.randint(x1, x1+int(new_square_width*scaling_factor))
+                # y1 = random.randint(y1, y1+int(new_square_height*scaling_factor))
 
-                x1 = random.randint(x1, x1+int(new_square_width*scaling_factor))
+                x1 = x1 + int(new_square_width*scaling_factor*choice_x)
                 new_square_width = int(new_square_width - (new_square_width*scaling_factor))
                 x2 = x1+new_square_width
 
-                y1 = random.randint(y1, y1+int(new_square_height*scaling_factor))
+                y1 = y1 + int(new_square_height*scaling_factor*choice_y)
                 new_square_height = int(new_square_height - (new_square_height*scaling_factor))
                 y2 = y1+new_square_height
+                
+                scaling_factor += 0.05
+
+                color = get_random_color()
+                draw.rectangle((x1, y1, x2, y2), fill=color, outline=(0, 0, 0), width=2)
 
 ### MAIN ###
 
