@@ -198,7 +198,8 @@ if __name__ == '__main__':
     # color_path = color_palette_directory / '001219-005f73-0a9396-94d2bd-e9d8a6-ee9b00-ca6702-bb3e03-ae2012-9b2226.json'
     # color_path = color_palette_directory / 'cotton_candy.json'
     # color_path = color_palette_directory / 'brown_6.json'
-    color_path = color_palette_directory / 'brown_many.json'
+    # color_path = color_palette_directory / 'brown_many.json'
+    color_path = color_palette_directory / 'blue_green_many.json'
 
 
     color_palette = ColorPalette(color_path)
